@@ -1,11 +1,10 @@
-import { distinct, distinctUntilChanged, distinctUntilKeyChanged, from, of } from "rxjs";
+import { distinct, from, of } from "rxjs";
 
 
 
-const numeros$ = of(1,1,3,3,2,2,4,1,4,5,5,6,7,8,8)
+const numeros$ = of(1,1,1,3,3,2,2,4,4,5,5,6,7,8,8)
 .pipe(
-    //distinct(),
-    distinctUntilChanged()
+    distinct(),
     
 )
 .subscribe({
@@ -22,7 +21,7 @@ const personaje:Personaje[] = [
         nombre: "Megaman"
     },
     {
-        nombre: "Megaman"
+        nombre: "x"
     },
     {
         nombre: "zero"
@@ -31,7 +30,7 @@ const personaje:Personaje[] = [
         nombre: "Dr. Whily"
     },
     {
-        nombre: "x"
+        nombre: "Megaman"
     },
     {
         nombre: "x"
@@ -43,10 +42,5 @@ const personaje:Personaje[] = [
 
 
 from(personaje)
-.pipe(
-    //distinct(res => res.nombre)
-    //sirve para booleanos, ints, etc, operadores primitivos
-    //distinctUntilChanged((ant, act) => ant.nombre === act.nombre)
-    distinctUntilKeyChanged('nombre')
-)
+.pipe(distinct(res => res.nombre))
 .subscribe(console.log)

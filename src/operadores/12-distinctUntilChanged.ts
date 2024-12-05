@@ -1,4 +1,4 @@
-import { distinct, distinctUntilChanged, distinctUntilKeyChanged, from, of } from "rxjs";
+import { distinct, distinctUntilChanged, from, of } from "rxjs";
 
 
 
@@ -46,7 +46,6 @@ from(personaje)
 .pipe(
     //distinct(res => res.nombre)
     //sirve para booleanos, ints, etc, operadores primitivos
-    //distinctUntilChanged((ant, act) => ant.nombre === act.nombre)
-    distinctUntilKeyChanged('nombre')
+    distinctUntilChanged((ant, act) => ant.nombre === act.nombre)
 )
 .subscribe(console.log)
